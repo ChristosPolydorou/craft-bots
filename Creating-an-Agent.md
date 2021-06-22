@@ -28,13 +28,15 @@ For example: In the "default_world_gen_modifiers.txt" file there is a value call
 `MAX_NODES = 50`
 
 Assuming no changes from the default, the world will look something like this (not exactly, as it is random):
-### ADD PICTURE OF LARGE MAP HERE 
+
+![Big Craftbots Map](https://i.imgur.com/1cWMu2T.png)
 
 If in the "world_gen_modifiers.txt" you have the MAX_NODES value is 5:
 `MAX_NODES = 5`
 
 Assuming no other changes from the defaults aside from the one above, the world becomes more like this: 
-### ADD PICTURE OF SMALL MAP HERE
+
+![Small Craftbots Map](https://i.imgur.com/4pGL6rh.png)
 
 ## Agents, AgentAPI, and the Command cycle
 
