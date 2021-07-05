@@ -1,4 +1,4 @@
-Actors
+# Actors
 When the simulation starts, the AI will have 3 actors given to them. These actors are controlled by the AI agent you are tasked with designing. They can be controlled to move to different nodes, perform different tasks, such as digging and building, and pick up and put down resources, of which they can carry only a limited amount.
 
 * MOVE - Move between two nodes along an existing connection.
