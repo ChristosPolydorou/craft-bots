@@ -1,7 +1,7 @@
-## Commands
+# Commands
 Commands are instructions that the agent will send to actors via the API. The commands will be executed at the end of a tick. Each command will have a function given to it on the initialisation of the Command object. This determines the function the command will perform when it is set to perform. Commands also have a state that gives insight into what the progress of the Command currently is.
 
-### Command States
+## Command States
 * `PENDING`
   * The command is considered `PENDING` when the function it has been assigned to do has not been performed yet.
 * `ACTIVE`
@@ -11,7 +11,7 @@ Commands are instructions that the agent will send to actors via the API. The co
 * `COMPLETED`
   * The command is considered `COMPLETED` when the function the command is assigned to do has been successfully completed, although the function itself might have failed, for other reasons, for example, if a pickup action by an actor fails, the Command would be considered complete, even if the action itself failed.
 
-### Command Function ID's
+## Command Function ID's
 * `MOVE_TO`
 * `MOVE_RAND`
 * `PICK_UP_RESOURCE`
@@ -26,7 +26,7 @@ Commands are instructions that the agent will send to actors via the API. The co
 * `START_SENDING`
 * `START_RECEIVING`
 
-### Fields
+## Fields
 Command entities have 5 fields that an agent can access to learn about the command. 
 
 * `id`
