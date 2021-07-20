@@ -45,8 +45,7 @@ Assuming no other changes from the defaults aside from the one above, the world 
 The Command Cycle is the system used to allow the agent to determine its actions, even as the world in the simulation progresses. This allows for spending "down-time" thinking and also for the agent to wait to determine the outcomes of its actions before making more decisions. 
 
 At the start of the cycle, the simulation will check if the agent is actively thinking, something that your agent determines. If your agent is not thinking, then the simualtion will create a seperate thread for your agent to think on, by calling a function in your agent called get_next_commands(). 
-then the world is updated by a single tick. At this point, actors will make progress towards ongoing actions such as digging, constructing, and moving. Next, if the agent has sent any commands, they are executed in the simulation. Whether successful or not, all actions return a result, usually a true if they are successful and a false otherwise. If there are any results, then the simulation will return them to the agent via the agents (recieve_results(results) command, and it is up to the agent to decide what to do with this information.
-
+then the world is updated by a single tick. At this point, actors will make progress towards ongoing actions such as digging, constructing, and moving. Next, if the agent has sent any commands, they are executed in the simulation. Whether successful or not, all actions return a result, usually a true if they are successful and a false otherwise. 
 When your agent has finished deciding what it will do (assuming it will do so during the simulation), it should change the thinking flag to False, to indicate to the simulation that the agent needs to be called on again. Otherwise, your agent will simply stop thinking and stop performing actions. 
 
 ## Structure of an Agent
@@ -62,7 +61,6 @@ The agent needs to have 3 fields:
 ### Methods
 The agent needs to have 2 methods:
 
-* `recieve_results(results)` this function is called whenever the simulation has new results to give to the agent. The results come in list of tuples with the ID of a command, and its outcome. 
 * `get_next_commands()` this function is called whenever the simulation notices that the agent is not thinking. At the end of this function, the agent should set its `thinking` field to False. 
 
 # Creating an Agent
@@ -74,9 +72,6 @@ Using the "Structure of an Agent" section above, the bare minimum requirements o
             self.thinking = False
             self.world_info = None
 
-        def receive_results(self, _):
-            pass
-
         def get_next_commands(self):
             self.thinking = False
 
@@ -86,8 +81,9 @@ Saving this as `blank_agent.py` in the agents folder, we can call in main:
     from agents import blank_agent
 
     if __name__ == '__main__':
-        craft_bots.start_simulation(agent=blank_agent.BlankAgent())
+        craft_bots.start_simulation(agent=blank_agent.BlankAgent)
 
+Craftbots just needs a reference to the class of the agent, not an object of the agent!
 And then running this, we start a simulation. 
 
 ![CraftBots Simulation Graph with nothing happening](https://i.imgur.com/1cWMu2T.png)
@@ -97,7 +93,7 @@ You will notice that nothing is currently moving in the simulation. This is beca
 ## Getting Information from the World
 Before the agent can begin to make actions in the world, it needs to know what is there. This is what `world_info` and the three API commands `get_world_info()`, `get_by_id()`, and `get_field()` are for. 
 
-`world_info` is updated right before the agent is called on, but represents the world at that point. This is fine when your agent can quickly make decisions and stop thinking, but if your agent waits for certain events / results or just takes a long time to determine its actions, then a new up to date dictionary can be recieved with the `get_world_info()` command from the api. We can change our get_next_commands() function to show how this function is called and how to interact with the API. 
+`world_info` is updated right before the agent is called on, but represents the world at that point. This is fine when your agent can quickly make decisions and stop thinking, but if your agent waits for certain events / results or just takes a long time to determine its actions, then a new up to date dictionary can be received with the `get_world_info()` command from the API. We can change our get_next_commands() function to show how this function is called and how to interact with the API. 
 
         def get_next_commands(self):
             self.world_info = self.api.get_world_info()
@@ -152,7 +148,11 @@ Output:
 {'node': 85, 'state': 0, 'progress': -1, 'id': 121, 'target': None, 'resources': []}
 `
 
-Each entity (that being: Actors, Nodes, Edges, Resources, Mine, Sites, Buildings, Tasks, and Commands) each have a unique, static ID. Knowing an ID is equivalent to have a reference to the object. To have a more indepth explaination of the dictionary layout, see below.
+If you want to check what actors your agent is allowed to interact with (e.g. a Limited Communication simulation has each actor with its own unique agent instead of one agent for all actors), then you can get a list of the ID's of actors your agent can use using:
+
+`self.api.agents`
+
+Each entity (that being: Actors, Nodes, Edges, Resources, Mine, Sites, Buildings, Tasks, and Commands) each have a unique, static ID. Knowing an ID is equivalent to have a reference to the object. To have a more in-depth explanation of the dictionary layout, see here.
 
 ## Sending Commands to Actors
 
@@ -172,9 +172,7 @@ Running the simulation now, you should be able to see the small grey dots moving
 I would suggest have a look at the `api/agent_api.py` to see what the api offers to your agent and how to use them. If you used the line provided underneath the Autocomplete section, then you can also have your IDE show you all of the methods avalible to you from self.api. 
 
 ## Using results
-Actions can fail, if conditions are not met such as, your agent sending ID's that don't properly fill the required roles or sending a command under a situation that it cannot be performed. The Command Cycle also informs you aboput the outcomes of your commands. (Using the randomly moving actors from above) We can use the `recieve_results()` function to see the outcomes of our results.
-
-At the end of a tick, whatever commands have been performed will return a tuple with the command ID and the outcome of the action. Like the other entities, Commands also have unique, static ID's. To get the ID, you simply save the return of the command call (this does not apply to `get_world_info`, `get_by_id`, and `get_field`). 
+Actions can fail, if conditions are not met such as, your agent sending ID's that don't properly fill the required roles or sending a command under a situation that it cannot be performed. Commands also have unique, static ID's. To get the ID, you simply save the return of the command call (this does not apply to `get_world_info`, `get_by_id`, and `get_field`). 
 
 You can see the Command IDs like so:
     print(self.api.move_rand(actor_id))
@@ -187,50 +185,62 @@ Output:
 127
 128...`
 
-Command IDs are useful if your agent needs to know the outcome of certain events. However, the agent can also just print all of the results it gets back, by having this function:
+Command IDs are useful if your agent needs to know the outcome of certain events. These commands can be found in world info the same way other entities are found. We can check the state to see if they are completed, and then print the results like so:
 
-    def receive_results(self, results):
-        print(results)
+`
+    def get_next_commands(self):
+        self.api: agent_api.AgentAPI
+        for actor_id in self.api.actors:
+            self.pending.append(self.api.move_rand(actor_id))
+        self.thinking = False
+
+        for command_id in self.pending:
+            if self.api.get_field(command_id, "state") == Command.COMPLETED:
+                print(self.api.get_field(command_id, "result"))
+                self.pending.remove(command_id)
+`
 
 Running this with our randomly moving agents from above reveals the following:
 `
-[(123, True), (124, True), (125, True)]
-[(126, False), (127, False), (128, False)]
-[(129, False), (130, False), (131, False)]
-[(132, False), (133, False), (134, False)]
-[(135, False), (136, False), (137, False)]
-[(138, False), (139, False), (140, False)]
-[(141, False), (142, False), (143, False)]
+True
+True
+True
+False
+False
+False
+
+...
 `
 
 There is lots of False (i.e failed) command results? Why? Because the actor cannot move to a random node while it is currently moving. This can be seen through its state. When the state is 0, it is Idle, when it is 1, it is moving. There are other states as well for other ongoing actions. We can use this information to make a decision before sending a command. Changing the `get_next_commands()` to the below function should remedy this:
 
+`
     def get_next_commands(self):
         self.api: agent_api.AgentAPI
-        for actor_id in self.world_info["actors"]:
+        for actor_id in self.api.actors:
             if self.api.get_field(actor_id, "state") == 0:
-                self.api.move_rand(actor_id)
+                self.pending.append(self.api.move_rand(actor_id))
         self.thinking = False
 
-By checking if the actor is Idle before sending a command, we should greatly reduce the amount of commands sent to the simulation. This out output:
+        for command_id in self.pending:
+            if self.api.get_field(command_id, "state") == Command.COMPLETED:
+                print(self.api.get_field(command_id, "result"))
+                self.pending.remove(command_id)
+`
 
-`[(85, True), (86, True), (87, True)]
-[(88, True)]
-[(89, True)]
-[(90, True)]
-[(91, True)]
-[(92, True)]
-[(93, True)]
+By checking if the actor is Idle before sending a command, we should greatly reduce the number of commands sent to the simulation. This out output:
+
+`True
+True
+True
+True
+True
+True
+...
 `
 
 Now all of the commands are successful. 
 
-By checking the API, and the [rules](https://github.com/strathclyde-artificial-intelligence/craft-bots/wiki/Craft-Bots-Rules), you should be able to begin creating an agent for the CraftBots simulation. But what do you do?
-
-## Tasks
-### NOTE: EVERYTHING BELOW THIS, ASIDE FROM HOW TO ACCESS THE TASKS, HAS NOT YET BEEN IMPLEMENTED
-The goal of Craftbots Simulation is to complete tasks that consist of building a number of structures at certain nodes. These tasks come in online and have a deadline by when they need to be completed. Upon completion, they have a certain point value that your agent then recieves. After 15min, the simulation will stop and the final score for the agent is returned.
-
-To get information on the tasks your agent currently has you can use: `self.world_info["tasks"]`, which will return a dictionary with all of the currently incomplete tasks. Each task is also given a unique, static ID, which can be used to reference it.
+By checking the [API](https://github.com/strathclyde-artificial-intelligence/craft-bots/wiki/Agent-API), and the [rules](https://github.com/strathclyde-artificial-intelligence/craft-bots/wiki/Craft-Bots-Rules), you should be able to begin creating an agent for the CraftBots simulation. You should also check the [entities](https://github.com/strathclyde-artificial-intelligence/craft-bots/wiki/Entities) page to learn more about the CraftBots world.
 
 
