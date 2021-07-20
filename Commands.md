@@ -1,4 +1,5 @@
 # Commands
+
 Commands are instructions that the agent will send to actors via the API. The commands will be executed at the end of a tick. Each command will have a function given to it on the initialisation of the Command object. This determines the function the command will perform when it is set to perform. Commands also have a state that gives insight into what the progress of the Command currently is.
 
 ## Command States
