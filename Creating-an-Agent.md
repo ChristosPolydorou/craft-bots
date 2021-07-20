@@ -174,8 +174,7 @@ I would suggest have a look at the `api/agent_api.py` to see what the api offers
 ## Using results
 Actions can fail, if conditions are not met such as, your agent sending ID's that don't properly fill the required roles or sending a command under a situation that it cannot be performed. Commands also have unique, static ID's. To get the ID, you simply save the return of the command call (this does not apply to `get_world_info`, `get_by_id`, and `get_field`). 
 
-You can see the Command IDs like so:
-    print(self.api.move_rand(actor_id))
+You can see the Command IDs like so: `print(self.api.move_rand(actor_id))`
 
 Output:
 `...123
@@ -187,7 +186,7 @@ Output:
 
 Command IDs are useful if your agent needs to know the outcome of certain events. These commands can be found in world info the same way other entities are found. We can check the state to see if they are completed, and then print the results like so:
 
-`
+
     def get_next_commands(self):
         self.api: agent_api.AgentAPI
         for actor_id in self.api.actors:
@@ -198,23 +197,22 @@ Command IDs are useful if your agent needs to know the outcome of certain events
             if self.api.get_field(command_id, "state") == Command.COMPLETED:
                 print(self.api.get_field(command_id, "result"))
                 self.pending.remove(command_id)
-`
+
 
 Running this with our randomly moving agents from above reveals the following:
-`
-True
-True
-True
-False
-False
-False
 
-...
-`
+`True
+True
+True
+False
+False
+False
+...`
 
 There is lots of False (i.e failed) command results? Why? Because the actor cannot move to a random node while it is currently moving. This can be seen through its state. When the state is 0, it is Idle, when it is 1, it is moving. There are other states as well for other ongoing actions. We can use this information to make a decision before sending a command. Changing the `get_next_commands()` to the below function should remedy this:
 
-`
+
+
     def get_next_commands(self):
         self.api: agent_api.AgentAPI
         for actor_id in self.api.actors:
@@ -226,7 +224,7 @@ There is lots of False (i.e failed) command results? Why? Because the actor cann
             if self.api.get_field(command_id, "state") == Command.COMPLETED:
                 print(self.api.get_field(command_id, "result"))
                 self.pending.remove(command_id)
-`
+
 
 By checking if the actor is Idle before sending a command, we should greatly reduce the number of commands sent to the simulation. This out output:
 
@@ -236,8 +234,7 @@ True
 True
 True
 True
-...
-`
+...`
 
 Now all of the commands are successful. 
 
