@@ -15,7 +15,7 @@ How to clone and run with a default agent.
 - [Initalisation Files](Initalisation_Files)
   - [Modifiers](Modifiers)
   - [Rules](Rules)
-  - [World Gen Modifiers](World_Gen_Modifiers)
+  - [World Gen Modifiers](World-Gen-Modifiers)
 - [World Info](World_Info)
 - [Entities](Entities)
   - [Actors](Actors)
