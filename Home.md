@@ -6,9 +6,19 @@ How to clone and run with a default agent.
 
 ### Creating an agent
 
-- links to tutorial pages
+  - [Creating an Agent](Creating_an_Agent)
+  - [AgentAPI](AgentAPI)
 
 ### Detailed Documentation
 
-- [Agent API](Agent-API)
+- [Craft Bots Rules](Craft_Bots_Rules)
+- [Entities](Entities)
+  - [Actors](Actors)
+  - [Nodes](Nodes)
+  - [Edges](Edges)
   - [Resources](Resources)
+  - [Mines](Mines)
+  - [Sites](Sites)
+  - [Buildings](Buildings)
+  - [Tasks](Tasks)
+  - [Commands](Commands)
