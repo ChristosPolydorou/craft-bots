@@ -6,17 +6,17 @@ How to clone and run with a default agent.
 
 ### Creating an agent
 
-  - [Creating an Agent](Creating_an_Agent)
+  - [Creating an Agent](Creating-an-Agent)
   - [AgentAPI](AgentAPI)
 
 ### Detailed Documentation
 
-- [Craft Bots Rules](Craft_Bots_Rules)
+- [Craft Bots Rules](Craft-Bots-Rules)
 - [Initalisation Files](Initalisation_Files)
   - [Modifiers](Modifiers)
   - [Rules](Rules)
   - [World Gen Modifiers](World-Gen-Modifiers)
-- [World Info](World_Info)
+- [World Info](World-Info)
 - [Entities](Entities)
   - [Actors](Actors)
   - [Nodes](Nodes)
