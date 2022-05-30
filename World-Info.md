@@ -4,7 +4,7 @@ World information is stored as a nested dictionary. The top-level dictionary des
 | --- | ---- | ----- |
 | "tick" | int | Current simulation tick. |
 | "score" | int | Current total score. |
-| "actors" | dict | Actor information. [Actors](Actors)|
+| "actors" | dict | Actor information. [(jump)](World-info#Actors) |
 | "nodes" | dict | Node information. |
 | "sites" | dict | Site information. |
 | "buildings" | dict | Completed Building information. |
