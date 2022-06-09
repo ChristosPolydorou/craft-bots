@@ -22,8 +22,9 @@ Once you have created your own agent open main.py and modify the lines which app
 
 ## Contents
 
-- [Craft Bots Rules](Craft-Bots-Rules)
+- [Rules Overview](Craft-Bots-Rules)
 - [Configuration File](Configuration)
 - [Creating an Agent](Creating-an-Agent)
   - [World Info](World-Info)
   - [Commands](Commands)
+- [Evaluations](Evaluations)
