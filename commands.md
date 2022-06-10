@@ -14,16 +14,7 @@ If the arguments are malformed, then the function will return `-1`. Please check
 
 ## Monitoring
 
-Commands can be monitored through the [world_info](world_info#command) dictionary or by using the `get_field` function. For example, the following code requests the information for the move command that was already dispatched.
-```python
-command_info = self.api.get_field(command_id, "state")
-print("State:", str(command_info))
-```
-and produces the following output:
-```
-State: 2
-```
-Indicating that the action is currently executing.
+Commands can be monitored through the [world_info](world_info#command) dictionary or by using the `get_field` function. The "state" field contains the execution information available to the command, which is updated each tick.
 
 | Command State | value | description |
 | ------------- | ----- | ----------- |
@@ -34,6 +25,17 @@ Indicating that the action is currently executing.
 | Command.ABORTED    | 4 | The action has been aborted. |
 | Command.SUCCEEDED  | 5 | The action has been successfully completed. |
 | Command.PREEMPTED  | 6 | The action was cancelled by another command. |
+
+For example, the following code requests the information for a move command that was already dispatched.
+```python
+command_info = self.api.get_field(command_id, "state")
+print("State:", str(command_info))
+```
+and produces the following output:
+```
+State: 2
+```
+Indicating that the action is currently executing.
 
 ## Detailed Command List
 
