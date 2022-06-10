@@ -1,4 +1,4 @@
-World information is stored as a nested dictionary. The top-level dictionary described below separates entities by type. Each entity sub-dictionary is described afterward.
+The `world_info` dictionary of the Agent class is updated by the simulation each tick. The top-level dictionary separates entities by type. Each entity sub-dictionary is described on this page.
 
 | key         | value type | value |
 | ----------- | ---------- | ----- |
@@ -6,13 +6,15 @@ World information is stored as a nested dictionary. The top-level dictionary des
 | "score"     | int        | Current total score. |
 | "actors"    | dict       | Actor information. [(jump)](world_info#actors) |
 | "nodes"     | dict       | Node information. [(jump)](world_info#nodes)|
+| "edges"     | dict       | Edge information. [(jump)](world_info#edges)|
+| "mines"     | dict       | Mine information. [(jump)](world_info#mines)|
 | "resources" | dict       | Resource information. [(jump)](world_info#resources)|
 | "sites"     | dict       | Site information. [(jump)](world_info#sites)|
 | "buildings" | dict       | Completed Building information. [(jump)](world_info#buildings)|
 | "tasks"     | dict       | Task information. [(jump)](world_info#tasks)|
 | "commands"  | dict       | Information on commands, both executing and completed. [(jump)](world_info#commands)|
 
-### actors
+## actors
 
 | key | value type | value |
 | --- | ---------- | ----- |
@@ -40,7 +42,7 @@ Actor.SENDING      = 6
 Actor.RECEIVING    = 7
 ```
 
-### nodes
+## nodes
 
 | key | value type | value |
 | --- | ---------- | ----- |
@@ -60,7 +62,37 @@ Actor.RECEIVING    = 7
 | "x"         | int  | Horizontal position of node. |
 | "y"         | int  | Vertical position of node. |
 
-### resources
+
+## edges
+
+| key | value type | value |
+| --- | ---------- | ----- |
+| edge_id (int) | dict | Edge dictionary. |
+
+**Edge Dictionary**
+| key | value type | value |
+| --- | ---------- | ----- |
+| "id"        | int | ID of the edge. |
+| "length"    | int | Length of the edge. |
+| "node_a"    | id | ID of one connected node. |
+| "node_b"    | id | ID of the other connected node. |
+
+## mines
+
+| key | value type | value |
+| --- | ---------- | ----- |
+| mine_id (int) | dict | Mine dictionary. |
+
+**Mine Dictionary**
+| key | value type | value |
+| --- | ---------- | ----- |
+| "id"        | int | ID of the mine. |
+| "node"      | int | ID of the node in which the mine is located. |
+| "colour"    | int | Resource type of the mine (see resource). |
+| "max_progress" | int | The total effort that must be made at this mine before it produces a resource. |
+| "progress"     | int | The current effort expended at this mine. |
+
+## resources
 
 | key | value type | value |
 | --- | ---------- | ----- |
@@ -70,11 +102,39 @@ Actor.RECEIVING    = 7
 | key | value type | value |
 | --- | ---------- | ----- |
 | "id"           | int   | ID of the resource. |
+| "colour"       | int   | Resource type. |
 | "location"     | int   | ID of the resource's current location (node, actor, etc.) |
-| "tick_created" | int   | The tick on which thr resource was mined. |
+| "tick_created" | int   | The tick on which the resource was mined. |
 | "used"         | bool  | True if the resource has been deposited into a site. |
 
-### buildings
+**Resource Type**
+```python
+Resource.RED    = 0 # can only be collected within time windows
+Resource.BLUE   = 1 # takes longer to collect
+Resource.ORANGE = 2 # requires multiple actors to mine
+Resource.BLACK  = 3 # cannot be carried with any other resource
+Resource.GREEN  = 4 # decays over time
+```
+
+## sites
+
+| key | value type | value |
+| --- | ---------- | ----- |
+| site_id (int) | dict | Site dictionary. |
+
+**Site Dictionary**
+| key | value type | value |
+| --- | ---------- | ----- |
+| "id"           | int   | ID of the site. |
+| "building_type"| int   | Building type (see building). |
+| "node"         | int   | ID of the node in which the site is located. |
+| "deposited_resources" | list | List of length five describing the amount of each resource type deposited. |
+| "needed_resources"    | list | List of length five describing the total amount of resource of each type required to construct the building. |
+| "needed_effort"| int | The total effort that must be made at this site before it becomes a constructed building. |
+| "max_progress" | int | The maximum effort that can be expended given the current number of deposited resource. |
+| "progress"     | int | The current effort expended at this site. |
+
+## buildings
 
 | key | value type | value |
 | --- | ---------- | ----- |
@@ -89,15 +149,35 @@ Actor.RECEIVING    = 7
 
 **Building Type**
 ```python
-Building.BUILDING_TASK         = 0
-Building.BUILDING_SPEED        = 1
-Building.BUILDING_MINE         = 2
-Building.BUILDING_CONSTRUCTION = 3
-Building.BUILDING_INVENTORY    = 4
-Building.BUILDING_ACTOR_SPAWN  = 5
+Building.BUILDING_TASK         = 0 # scores points as dictated by a task
+Building.BUILDING_SPEED        = 1 # increases movement speed of actors
+Building.BUILDING_MINE         = 2 # increases mining rate of actors
+Building.BUILDING_CONSTRUCTION = 3 # increases constructions rate of actors
+Building.BUILDING_INVENTORY    = 4 # increases inventory capacity of actors
+Building.BUILDING_ACTOR_SPAWN  = 5 # can be used to generate new actors
 ```
 
-### commands
+## tasks
+
+| key | value type | value |
+| --- | ---------- | ----- |
+| task_id (int) | dict | Building dictionary. |
+
+**Task Dictionary**
+| key | value type | value |
+| --- | ---------- | ----- |
+| "id"            | int   | ID of the task. |
+| "completed"     | bool  | ID of the node in which it was built. |
+| "deadline"      | int   | The type of completed building. |
+| "node"          | int   | The type of completed building. |
+| "score"         | int   | The type of completed building. |
+| "site"          | int   | The type of completed building. |
+| "start_time"    | int   | The type of completed building. |
+| "difficulty"    | int   | The type of completed building. |
+| "needed_resources" | list | List of length five describing the required amount of resource of each type. |
+
+
+## commands
 
 | key | value type | value |
 | --- | ---------- | ----- |
@@ -135,40 +215,4 @@ Command.ACTIVE    = 1
 Command.REJECTED  = 2
 Command.COMPLETED = 3
 ```
-
-### edges
-
-2: {'get_other_node': <bound method Edge.get_other_node_id of Edge(Node(1), Node(0), 86)>,
-               'id': 2,
-               'length': 86,
-               'node_a': 1,
-               'node_b': 0},
-
-### mines
-26: {'colour': 0,
-                'id': 26,
-                'max_progress': 100,
-                'node': 1,
-                'progress': 0},
-### sites
-
-49: {'building_type': 0,
-                'deposited_resources': [0, 0, 0, 0, 0],
-                'id': 49,
-                'max_progress': 0.0,
-                'needed_effort': 100,
-                'needed_resources': [0, 0, 0, 0, 1],
-                'node': 6,
-                'progress': 0}},
-
-### tasks
-': {21: {'completed': <bound method Task.completed of Task(Node(17), [0, 0, 0, 0, 1])>,
-                'deadline': -1,
-                'difficulty': 0,
-                'id': 21,
-                'needed_resources': [0, 0, 0, 0, 1],
-                'node': 17,
-                'score': 2,
-                'site': None,
-                'start_time': 0},
 
