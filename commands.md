@@ -2,12 +2,38 @@ Commands are sent by the agent via the API to control actors and are executed at
 
 ## Dispatching
 
+Commands are dispatched through the [agent API](../blob/main/api/agent_api.py) by calling the appropriate function. For example, the following code dispatches the command for an actor to travel to another node. The ID of the command is saved for monitoring.
+```python
+command_id = self.api.move_to(actor_id, node_id)
+```
+
+If the arguments are malformed, then the function will return `-1`. Please check the following causes:
+- One of the argument IDs does not exist.
+- The argument IDs reference the wrong kind of object (i.e. the value of `node_id` refers to another actor, not a node).
+- The maximum number of commands has already been sent this tick. Note that this should be much higher than the number of actors.
+
 ## Monitoring
 
-| PENDING   | 0
-| ACTIVE    | 1
-| REJECTED  | 2
-| COMPLETED | 3
+Commands can be monitored through the [world_info](world_info#command) dictionary or by using the `get_field` function. For example, the following code requests the information for the move command that was already dispatched.
+```python
+command_info = self.api.get_field(command_id, "state")
+print("State:", str(command_info))
+```
+and produces the following output:
+```
+State: 2
+```
+Indicating that the action is currently executing.
+
+| Command State | value | description |
+| ------------- | ----- | ----------- |
+| Command.PENDING    | 0 | The command has been sent, but not yet received by the actor. |
+| Command.ACTIVE     | 1 | The command has been recieved by the actor and is currently executing. |
+| Command.REJECTED   | 2 | The command was rejected by the actor. |
+| Command.PREEMPTING | 3 | A cancellation command has been received and the actor is finishing executing. |
+| Command.ABORTED    | 4 | The action has been aborted. |
+| Command.SUCCEEDED  | 5 | The action has been successfully completed. |
+| Command.PREEMPTED  | 6 | The action was cancelled by another command. |
 
 ## Detailed Command List
 
