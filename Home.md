@@ -22,9 +22,9 @@ sim.agents.append(agent)
 
 ## Contents
 
-- [rules overview](Craft-Bots-Rules)
-- [configuration file](Configuration)
-- [creating an agent](Creating-an-Agent)
-  - [world_info](world_info)
-  - [commands](Commands)
-- [evaluations](Evaluations)
+- [rules overview](rules_overview)
+- [configuration file](configuration)
+- [creating an agent](creating_an_agent)
+  - [world info](world_info)
+  - [commands](commands)
+- [evaluation](evaluation)
