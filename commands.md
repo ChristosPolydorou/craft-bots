@@ -1,8 +1,12 @@
-Commands are sent by the agent via the API to control actors and are executed at the end the tick on which they were sent. Each command is given a unique ID and can be observed like other entities in the simulation. See [world_info#command](world_info#command).
+## Contents
+
+- [Dispatching](#Dispatching)
+- [Monitoring](#Monitoring)
+- [Detailed Command List](#Detailed Command List)
 
 ## Dispatching
 
-Commands are dispatched through the [agent API](../blob/main/api/agent_api.py) by calling the appropriate function. For example, the following code dispatches the command for an actor to travel to another node. The ID of the command is saved for monitoring.
+Commands are sent by the agent via the API to control actors and are executed at the end the tick on which they were sent. Each command is given a unique ID. Commands are dispatched through the [agent API](../blob/main/api/agent_api.py) by calling the appropriate function. For example, the following code dispatches the command for an actor to travel to another node. The ID of the command is saved for monitoring.
 ```python
 command_id = self.api.move_to(actor_id, node_id)
 ```
