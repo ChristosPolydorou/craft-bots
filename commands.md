@@ -2,7 +2,7 @@
 
 - [Dispatching](#Dispatching)
 - [Monitoring](#Monitoring)
-- [Detailed Command List](#Detailed Command List)
+- [Detailed Command List](#Detailed-Command-List)
 
 ## Dispatching
 
