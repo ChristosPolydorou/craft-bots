@@ -27,8 +27,8 @@ The `world_info` dictionary of the Agent class is updated by the simulation each
 | "node" | int | ID of the actor's current node. |
 | "state" | int | Current state of the actor. |
 | "progress" | int | Effort spent on current ongoing action. |
-| "target" | int | ID of the target of the agent's current action. |
-| "resources" | list | List of resource IDs held by the agent. |
+| "target" | int | ID of the target of the actor's current action. |
+| "resources" | list | List of resource IDs held by the actor. |
 
 **Actor States**
 ```python
@@ -57,10 +57,10 @@ Actor.RECEIVING    = 7
 | "sites"     | list | List of site IDs started at this node. |
 | "buildings" | list | List of completed building IDs at this node. |
 | "resources" | list | List of resource IDs dropped at this node. |
-| "mines"     | list | List of mine Ids at this node. |
-| "edges"     | list | List of edges connected to this node. |
-| "x"         | int  | Horizontal position of node. |
-| "y"         | int  | Vertical position of node. |
+| "mines"     | list | List of mine IDs at this node. |
+| "edges"     | list | List of edge IDs connected to this node. |
+| "x"         | float  | Horizontal position of node. |
+| "y"         | float  | Vertical position of node. |
 
 
 ## edges
@@ -73,9 +73,9 @@ Actor.RECEIVING    = 7
 | key | value type | value |
 | --- | ---------- | ----- |
 | "id"        | int | ID of the edge. |
-| "length"    | int | Length of the edge. |
-| "node_a"    | id | ID of one connected node. |
-| "node_b"    | id | ID of the other connected node. |
+| "length"    | float | Length of the edge. |
+| "node_a"    | int | ID of one connected node. |
+| "node_b"    | int | ID of the other connected node. |
 
 ## mines
 
@@ -128,10 +128,10 @@ Resource.GREEN  = 4 # decays over time
 | "id"           | int   | ID of the site. |
 | "building_type"| int   | Building type (see building). |
 | "node"         | int   | ID of the node in which the site is located. |
-| "deposited_resources" | list | List of length five describing the amount of each resource type deposited. |
 | "needed_resources"    | list | List of length five describing the total amount of resource of each type required to construct the building. |
+| "deposited_resources" | list | List of length five describing the amount of each resource type deposited. |
 | "needed_effort"| int | The total effort that must be made at this site before it becomes a constructed building. |
-| "max_progress" | int | The maximum effort that can be expended given the current number of deposited resource. |
+| "max_progress" | int | The maximum effort that can be expended given the current number of deposited resources. |
 | "progress"     | int | The current effort expended at this site. |
 
 ## buildings
@@ -167,15 +167,21 @@ Building.BUILDING_ACTOR_SPAWN  = 5 # can be used to generate new actors
 | key | value type | value |
 | --- | ---------- | ----- |
 | "id"            | int   | ID of the task. |
-| "completed"     | bool  | ID of the node in which it was built. |
-| "deadline"      | int   | The type of completed building. |
-| "node"          | int   | The type of completed building. |
-| "score"         | int   | The type of completed building. |
-| "site"          | int   | The type of completed building. |
-| "start_time"    | int   | The type of completed building. |
-| "difficulty"    | int   | The type of completed building. |
+| "completed"     | bool  | True if the task was. |
+| "deadline"      | int   | The last tick on which the task can be successfully completed. Completing the task building after this tick will not yield any score. |
+| "score"         | int   | The score that will be earned by completing the task building. |
+| "node"          | int   | The ID of the node in which the task building should be constructed. |
+| "site"          | int   | The ID of the site for this task, if started. |
+| "start_time"    | int   | The time at which the task became available. |
+| "difficulty"    | int   | The difficulty of the task, used to generate required resources and deadline. |
 | "needed_resources" | list | List of length five describing the required amount of resource of each type. |
 
+**Task Difficulty**
+```python
+Task.EASY    = 0
+Task.MEDIUM  = 1
+Task.HARD    = 2
+```
 
 ## commands
 
