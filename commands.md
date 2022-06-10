@@ -1,42 +1,32 @@
-# Commands
+Commands are sent by the agent via the API to control actors and are executed at the end the tick on which they were sent. Each command is given a unique ID and can be observed like other entities in the simulation. See [world_info#command](world_info#command).
 
-Commands are instructions that the agent will send to actors via the API. The commands will be executed at the end of a tick. Each command will have a function given to it on the initialisation of the Command object. This determines the function the command will perform when it is set to perform. Commands also have a state that gives insight into what the progress of the Command currently is.
+## Dispatching
 
-## Command States
-* `PENDING`
-  * The command is considered `PENDING` when the function it has been assigned to do has not been performed yet.
-* `ACTIVE`
-  * The command is considered `ACTIVE` when it is currently performing the function it has been assigned to do.
-* `REJECTED`
-  * The command is considered `REJECTED` when arguments give unexpected results, for example, giving an ID to a node when an ID to an actor is expected.
-* `COMPLETED`
-  * The command is considered `COMPLETED` when the function the command is assigned to do has been successfully completed, although the function itself might have failed, for other reasons, for example, if a pickup action by an actor fails, the Command would be considered complete, even if the action itself failed.
+## Monitoring
 
-## Command Function ID's
-* `MOVE_TO`
-* `MOVE_RAND`
-* `PICK_UP_RESOURCE`
-* `DROP_RESOURCE`
-* `DROP_ALL_RESOURCES`
-* `DIG_AT`
-* `START_SITE`
-* `CONSTRUCT_AT`
-* `DEPOSIT_RESOURCES`
-* `CANCEL_ACTION`
-* `START_LOOKING`
-* `START_SENDING`
-* `START_RECEIVING`
+| PENDING   | 0
+| ACTIVE    | 1
+| REJECTED  | 2
+| COMPLETED | 3
 
-## Fields
-Command entities have 5 fields that an agent can access to learn about the command. 
+## Detailed Command List
 
-* `id`
-  * This is the unique, positive, non-zero integer that represents the command in the simulation.
-* `function_id`
-  * The ID of the function that the Command will execute when performed. See above for a list of the function id's
-* `args`
-  * A list of the arguments for the function the command will perform
-* `result`
-  * The result of the function. This is None if the function has not yet been performed
-* `state`
-  * The state of the Command. See above for a list of states and their meaning.
+- The *expected duration* of an action is the actual duration in ticks, unless temporal uncertainty is enabled.
+
+| Command name | function_id | arguments | expected duration | description |
+| ------------ | ----------- | --------- | ----------------- | ----------- |
+| MOVE_TO            | 0  | actor_id, node_id | Determined by actor move speed and edge length. | The actor will travel from its current node to the connected node specified by node_id. |
+| MOVE_RAND          | 1  | actor_id | Determined by actor move speed and edge length. | The actor will travel to a random connected node. |
+| PICK_UP_RESOURCE   | 2  | actor_id, resource_id | The specified resource will be moved from the node to the actor's inventory. |
+| DROP_RESOURCE      | 3  | actor_id, resource_id | 1 tick | | 
+| DROP_ALL_RESOURCES | 4  | actor_id | 1 tick | |
+| DIG_AT             | 5  | actor_id, mine_id | Determined by the mine's max progress and actor's mining rate. | |
+| START_SITE         | 6  | actor_id, [task_id] | 1 tick | |
+| CONSTRUCT_AT       | 7  | actor_id, site_id | Determined by the site's max progress and actor's construction rate. | |
+| DEPOSIT_RESOURCES  | 8  | actor_id, site_id, resource_id | 1 tick | |
+| CANCEL_ACTION      | 9  | actor_id | 1 tick | |
+| START_LOOKING      | 10 | actor_id | | |
+| START_SENDING      | 11 | actor_id, message | | |
+| START_RECEIVING    | 12 | actor_id | | |
+
+

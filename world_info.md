@@ -152,7 +152,7 @@ Resource.GREEN  = 4 # decays over time
 Building.BUILDING_TASK         = 0 # scores points as dictated by a task
 Building.BUILDING_SPEED        = 1 # increases movement speed of actors
 Building.BUILDING_MINE         = 2 # increases mining rate of actors
-Building.BUILDING_CONSTRUCTION = 3 # increases constructions rate of actors
+Building.BUILDING_CONSTRUCTION = 3 # increases construction rate of actors
 Building.BUILDING_INVENTORY    = 4 # increases inventory capacity of actors
 Building.BUILDING_ACTOR_SPAWN  = 5 # can be used to generate new actors
 ```
