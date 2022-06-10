@@ -15,9 +15,9 @@ Press "reset" to generate a new simulation, and "start" to begin the simulation.
 
 Once you have created your own agent open main.py and modify the lines which append the default agent to the simulation.
 ```python
-    # agent
-    agent = TestAgent()
-    sim.agents.append(agent)
+# agent
+agent = TestAgent()
+sim.agents.append(agent)
 ```
 
 ## Contents
