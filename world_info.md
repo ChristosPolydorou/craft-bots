@@ -193,8 +193,8 @@ Task.HARD    = 2
 | key | value type | value |
 | --- | ---------- | ----- |
 | "id"           | int   | ID of the command. |
-| "function_id"  | int   | The nature of the command. |
-| "result"       | bool  | True if the command. |
+| "function_id"  | int   | The action to be executed. |
+| "result"       | bool  | |
 | "state"        | int   | The current state of the command. |
 
 **function_id**
@@ -216,9 +216,12 @@ Command.START_RECEIVING    = 12
 
 **Command State**
 ```python
-Command.PENDING   = 0
-Command.ACTIVE    = 1
-Command.REJECTED  = 2
-Command.COMPLETED = 3
+Command.PENDING    = 0
+Command.ACTIVE     = 1
+Command.REJECTED   = 2
+Command.PREEMPTING = 3
+Command.ABORTED    = 4
+Command.SUCCEEDED  = 5
+Command.PREEMPTED  = 6
 ```
 
