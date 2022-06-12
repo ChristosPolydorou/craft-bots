@@ -50,15 +50,15 @@ Indicating that the action is currently executing.
 | MOVE_TO            | 0  | actor_id, node_id | Determined by actor move speed and edge length. | The actor will travel from its current node to the connected node specified by node_id. |
 | MOVE_RAND          | 1  | actor_id | Determined by actor move speed and edge length. | The actor will travel to a random connected node. |
 | PICK_UP_RESOURCE   | 2  | actor_id, resource_id | The specified resource will be moved from the node to the actor's inventory. |
-| DROP_RESOURCE      | 3  | actor_id, resource_id | 1 tick | | 
-| DROP_ALL_RESOURCES | 4  | actor_id | 1 tick | |
-| DIG_AT             | 5  | actor_id, mine_id | Determined by the mine's max progress and actor's mining rate. | |
-| START_SITE         | 6  | actor_id, [task_id] | 1 tick | |
-| CONSTRUCT_AT       | 7  | actor_id, site_id | Determined by the site's max progress and actor's construction rate. | |
-| DEPOSIT_RESOURCES  | 8  | actor_id, site_id, resource_id | 1 tick | |
-| CANCEL_ACTION      | 9  | actor_id | 1 tick | |
-| START_LOOKING      | 10 | actor_id | | |
-| START_SENDING      | 11 | actor_id, message | | |
-| START_RECEIVING    | 12 | actor_id | | |
+| DROP_RESOURCE      | 3  | actor_id, resource_id | 1 tick | The specified resource will be moved from the actor's inventory to the node. | 
+| DROP_ALL_RESOURCES | 4  | actor_id | 1 tick | All resources in the actor's inventory will be moved into the node. |
+| DIG_AT             | 5  | actor_id, mine_id | Determined by the mine's max progress and actor's mining rate. | The actor will begin digging at the mine until either the action is preempted, fails, of the mine's max effort is reached and a resource is produced. |
+| START_SITE         | 6  | actor_id, [task_id] | 1 tick | Creates a new site at the node into which resources can be deposited. The site is linked to the specified task and will score that task once the building is completed. |
+| CONSTRUCT_AT       | 7  | actor_id, site_id | Determined by the site's max progress and actor's construction rate. | The actor will begin constructing at the site until either the action is preempted, fails, of the site's max progress is reached. |
+| DEPOSIT_RESOURCES  | 8  | actor_id, site_id, resource_id | 1 tick | The resource is removed from the actor's inventory and added to the site's deposited resources. |
+| CANCEL_ACTION      | 9  | actor_id | 1 tick | Preempts the actor's current action. |
+| START_LOOKING      | 10 | actor_id | TBC | TBC |
+| START_SENDING      | 11 | actor_id, message | TBC | TBC |
+| START_RECEIVING    | 12 | actor_id | TBC | TBC |
 
 
