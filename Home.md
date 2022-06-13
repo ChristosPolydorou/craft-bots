@@ -1,5 +1,14 @@
 Welcome to the craft-bots wiki!
 
+## Wiki Contents
+
+- [rules overview](rules_overview)
+- [configuration file](configuration)
+- [creating an agent](creating_an_agent)
+  - [world info](world_info)
+  - [commands](commands)
+- [evaluation](evaluation)
+
 ## Quickstart
 
 Install the dependencies, clone the repository, and run main.py
@@ -19,12 +28,3 @@ Once you have created your own agent open main.py and modify the lines which app
 agent = TestAgent()
 sim.agents.append(agent)
 ```
-
-## Wiki Contents
-
-- [rules overview](rules_overview)
-- [configuration file](configuration)
-- [creating an agent](creating_an_agent)
-  - [world info](world_info)
-  - [commands](commands)
-- [evaluation](evaluation)
