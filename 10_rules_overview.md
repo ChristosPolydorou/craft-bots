@@ -23,9 +23,8 @@ Craftbots is a simple simulation with multiple actors that is loosely inspired b
 **Mines**
 - Mines are located at nodes.
 - Each mine has a specific resource type.
-- When actors dig at a mine they contribute thier effort to a single progress value. When the effort reaches max progress a single resource is spawned in the node.
+- When actors dig at a mine they contribute thier effort to a single progress value. When the effort reaches max progress a single resource is spawned in the node. **Note:** Actors digging in parallel produce *one* resource twice as quickly.
 - When the actors stop digging at the mine, the progress made so far is not lost.
-- **Note:** Actors digging in parallel produce one resource twice as quickly.
 
 **Resources**
 - Resources can be carried by actors, dropped, picked up, and deposited into sites.
