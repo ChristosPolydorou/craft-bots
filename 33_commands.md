@@ -37,7 +37,7 @@ print("State:", str(command_info))
 ```
 and produces the following output:
 ```
-State: 2
+State: 1
 ```
 Indicating that the action is currently executing.
 
