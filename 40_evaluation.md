@@ -1,0 +1,1 @@
+Agents can be evaluated using the script [evaluation.py](../blob/main/evaluation.py).
