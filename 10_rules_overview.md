@@ -1,4 +1,4 @@
-![craftbots screenshot](../blob/main/screenshot.png)
+![craftbots screenshot](https://raw.githubusercontent.com/strathclyde-artificial-intelligence/craft-bots/main/screenshot.png)
 
 Craftbots is a simple simulation with multiple actors that is loosely inspired by the scenario of the Robocup logistics league. There are many customisation options that can be used to emulate different scenarios. This page describes the basic rules as configured in the [simulation_configuration.yaml](../blob/main/craftbots/config/simulation_configuration.yaml). The [configuration](20_configuration) page contains detailed information on how the scenario can be customised.
 
