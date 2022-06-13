@@ -32,7 +32,7 @@ World information can be accessed in two ways.
 1. Through the nested [world_info](32_world_info) dictionary that is updated each tick, or
 2. using the `get_field` function.
 
-Description of get_field:
+The `get_field` function accesses the same nested dictionary, but can be more user-friendly.
 ```python
     def get_field(self, entity_id, field, entity_type=None, target_node=None):
         """
