@@ -6,7 +6,7 @@
 
 ## Overview
 
-In Craftbots **Agents** control one or more **actors** by sending commands. [Commands](33_commands) are dispatched through the [agent API](../blob/main/api/agent_api.py) by calling the appropriate function. Information about the current visible state of the world can be read from a [world information dictionary](32_world_info). For convenience the world info dictionary can be queried through the API.
+In Craftbots **agents** control one or more **actors** by sending commands. [Commands](33_commands) are dispatched through the [agent API](../blob/main/api/agent_api.py) by calling the appropriate function. Information about the current visible state of the world can be read from a [world information dictionary](32_world_info). For convenience the world info dictionary can be queried through the API.
 
 To adapt an existing planning and execution system to the simuation:
 1. Create an **adapter** that inherits the [Base Agent](#base-agent) class.
