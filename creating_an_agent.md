@@ -9,7 +9,7 @@
 In Craftbots **Agents** control one or more **actors** by sending commands. [Commands](commands) are dispatched through the [agent API](../blob/main/api/agent_api.py) by calling the appropriate function. Information about the current visible state of the world can be read from a [world information dictionary](world_info). For convenience the world info dictionary can be queried through the API.
 
 To adapt an existing planning and execution system to the simuation:
-1. Create an adapter that inherits the [Base Agent](#base-agent) class.
+1. Create an **adapter** that inherits the [Base Agent](#base-agent) class.
 2. Connect the adapter to the simulation by appending it to the simulation's `agents` list. See [main.py](../blob/main/main.py#L11) for an example. 
 
 ![adapter image](https://raw.githubusercontent.com/strathclyde-artificial-intelligence/craft-bots/gh-pages/craftbots_adapter.png)
