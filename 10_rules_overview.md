@@ -16,8 +16,7 @@ Craftbots is a simple simulation with multiple actors that is loosely inspired b
 
 **Tasks**
 - A task looks like "construct a building at node X using these resources: 2 red, 1 blue, ..."
-- Each task is associated with a score and a deadline.
-- Constructing the required building before the deadline will complete the task and score the points.
+- Each task is associated with a score and a deadline. Constructing the required building before the deadline will complete the task and score the points.
 - When all tasks are completed, new tasks are generated.
 - There is a small chance that a new task is generated each tick.
 
