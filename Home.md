@@ -2,13 +2,13 @@ Welcome to the craft-bots wiki!
 
 ## Wiki Contents
 
-- [rules overview](rules_overview)
-- [configuration file](configuration)
-- [creating an agent](creating_an_agent)
-  - [agent api](agent_api)
-  - [world info](world_info)
-  - [commands](commands)
-- [evaluation](evaluation)
+- [rules overview](10_rules_overview)
+- [configuration file](20_configuration)
+- [creating an agent](30_creating_an_agent)
+  - [agent api](31_agent_api)
+  - [world info](32_world_info)
+  - [commands](33_commands)
+- [evaluation](40_evaluation)
 
 ## Quickstart
 
