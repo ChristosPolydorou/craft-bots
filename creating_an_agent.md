@@ -12,7 +12,7 @@ To adapt an existing planning and execution system to the simuation:
 1. Create an adapter that inherits the [Base Agent](#base-agent) class.
 2. Connect the adapter to the simulation by appending it to the simulation's `agents` list. See [main.py](../blob/main/main.py#L11) for an example. 
 
-![adapter image](../blob/gh-pages/craftbots_adapter.png)
+![adapter image](https://raw.githubusercontent.com/strathclyde-artificial-intelligence/craft-bots/gh-pages/craftbots_adapter.png)
 
 *Note: the examples below assume an agent intended to run in its own thread. If lockstep is enabled in the configuration then the get_next_commands will be called every tick, and the simulation will be blocked until it returns.*
 
