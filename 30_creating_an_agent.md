@@ -6,7 +6,7 @@
 
 ## Overview
 
-In Craftbots **Agents** control one or more **actors** by sending commands. [Commands](commands) are dispatched through the [agent API](../blob/main/api/agent_api.py) by calling the appropriate function. Information about the current visible state of the world can be read from a [world information dictionary](world_info). For convenience the world info dictionary can be queried through the API.
+In Craftbots **Agents** control one or more **actors** by sending commands. [Commands](33_commands) are dispatched through the [agent API](../blob/main/api/agent_api.py) by calling the appropriate function. Information about the current visible state of the world can be read from a [world information dictionary](32_world_info). For convenience the world info dictionary can be queried through the API.
 
 To adapt an existing planning and execution system to the simuation:
 1. Create an **adapter** that inherits the [Base Agent](#base-agent) class.
@@ -42,7 +42,7 @@ The simulation interface and status flags are set by the simuation.
 - While `simulation_complete` remains false, the simuation tick limit has not been reached.
 - While `simulation_paused` is true, the world is not updated. This occurs when the user pauses the sim through the GUI.
 - `self.api` provides a handle to the agent interface through which commands can be sent and world information queried.
-- `self.world_info` contains all of the world information as a dictionary and is updated each tick. See [world_info](world_info).
+- `self.world_info` contains all of the world information as a dictionary and is updated each tick. See [world_info](32_world_info).
 
 The `self.thinking` agent status flag should be set by both agent and simulation. Each tick the simuation will check the flag, and if false will set the flag to true and call the agent's `get_next_commands` function. If the agent wishes the simulation to call the method multiple times, this can be done by resetting the flag to false.
 
@@ -94,14 +94,14 @@ The agent loops until the simulation is finished.
         while not self.simulation_complete:
 ```
 
-Each agent is checked to see if it is in an idle state. The `self.api.actors` list stores actor IDs for convenience - but these can also be found in the usual way through the world information [see here](world_info#actors). The actor state is queried using the `get_field` function of the agent api.
+Each agent is checked to see if it is in an idle state. The `self.api.actors` list stores actor IDs for convenience - but these can also be found in the usual way through the world information [see here](32_world_info#actors). The actor state is queried using the `get_field` function of the agent api.
 ```python
             for actor_id in self.api.actors:
                 if self.api.get_field(actor_id, "state") == Actor.IDLE:
 ```
-For more information on actor fields, see [world_info#actors](world_info#actors).
+For more information on actor fields, see [world_info#actors](32_world_info#actors).
 
-Those actors that are idle are moved randomly by sending a [command](commands) through the agent api.
+Those actors that are idle are moved randomly by sending a [command](33_commands) through the agent api.
 ```python
                     self.api.move_rand(actor_id)
 ```

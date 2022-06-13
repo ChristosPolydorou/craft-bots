@@ -18,7 +18,7 @@ If the arguments are malformed, then the function will return `-1`. Please check
 
 ## Monitoring
 
-Commands can be monitored through the [world_info](world_info#command) dictionary or by using the `get_field` function. The "state" field contains the execution information available to the command, which is updated each tick.
+Commands can be monitored through the [world_info](32_world_info#command) dictionary or by using the `get_field` function. The "state" field contains the execution information available to the command, which is updated each tick.
 
 | Command State | value | description |
 | ------------- | ----- | ----------- |
@@ -53,7 +53,7 @@ Indicating that the action is currently executing.
 | DROP_RESOURCE      | 3  | actor_id, resource_id | 1 tick | The specified resource will be moved from the actor's inventory to the node. | 
 | DROP_ALL_RESOURCES | 4  | actor_id | 1 tick | All resources in the actor's inventory will be moved into the node. |
 | DIG_AT             | 5  | actor_id, mine_id | Determined by the mine's max progress and actor's mining rate. | The actor will begin digging at the mine until either the action is preempted, fails, of the mine's max effort is reached and a resource is produced. |
-| START_SITE         | 6  | actor_id, [task_id] | 1 tick | Creates a new site at the node into which resources can be deposited. The site is linked to the specified task and will score that task once the building is completed. |
+| START_SITE         | 6  | actor_id, task_id | 1 tick | Creates a new site at the node into which resources can be deposited. The site is linked to the specified task and will score that task once the building is completed. |
 | CONSTRUCT_AT       | 7  | actor_id, site_id | Determined by the site's max progress and actor's construction rate. | The actor will begin constructing at the site until either the action is preempted, fails, of the site's max progress is reached. |
 | DEPOSIT_RESOURCES  | 8  | actor_id, site_id, resource_id | 1 tick | The resource is removed from the actor's inventory and added to the site's deposited resources. |
 | CANCEL_ACTION      | 9  | actor_id | 1 tick | Preempts the actor's current action. |

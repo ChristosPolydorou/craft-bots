@@ -4,15 +4,15 @@ The `world_info` dictionary of the Agent class is updated by the simulation each
 | ----------- | ---------- | ----- |
 | "tick"      | int        | Current simulation tick. |
 | "score"     | int        | Current total score. |
-| "actors"    | dict       | Actor information. [(jump)](world_info#actors) |
-| "nodes"     | dict       | Node information. [(jump)](world_info#nodes)|
-| "edges"     | dict       | Edge information. [(jump)](world_info#edges)|
-| "mines"     | dict       | Mine information. [(jump)](world_info#mines)|
-| "resources" | dict       | Resource information. [(jump)](world_info#resources)|
-| "sites"     | dict       | Site information. [(jump)](world_info#sites)|
-| "buildings" | dict       | Completed Building information. [(jump)](world_info#buildings)|
-| "tasks"     | dict       | Task information. [(jump)](world_info#tasks)|
-| "commands"  | dict       | Information on commands, both executing and completed. [(jump)](world_info#commands)|
+| "actors"    | dict       | Actor information. [(jump)](#actors) |
+| "nodes"     | dict       | Node information. [(jump)](#nodes)|
+| "edges"     | dict       | Edge information. [(jump)](#edges)|
+| "mines"     | dict       | Mine information. [(jump)](#mines)|
+| "resources" | dict       | Resource information. [(jump)](#resources)|
+| "sites"     | dict       | Site information. [(jump)](#sites)|
+| "buildings" | dict       | Completed Building information. [(jump)](#buildings)|
+| "tasks"     | dict       | Task information. [(jump)](#tasks)|
+| "commands"  | dict       | Information on commands, both executing and completed. [(jump)](#commands)|
 
 ## actors
 

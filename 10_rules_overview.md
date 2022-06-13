@@ -1,6 +1,6 @@
 ![craftbots screenshot](../blob/main/screenshot.png)
 
-Craftbots is a simple simulation with multiple actors that is loosely inspired by the scenario of the Robocup logistics league. There are many customisation options that can be used to emulate different scenarios. This page describes the basic rules as configured in the [simulation_configuration.yaml](../blob/main/craftbots/config/simulation_configuration.yaml). The [configuration](configuration) page contains detailed information on how the scenario can be customised.
+Craftbots is a simple simulation with multiple actors that is loosely inspired by the scenario of the Robocup logistics league. There are many customisation options that can be used to emulate different scenarios. This page describes the basic rules as configured in the [simulation_configuration.yaml](../blob/main/craftbots/config/simulation_configuration.yaml). The [configuration](20_configuration) page contains detailed information on how the scenario can be customised.
 
 **Basic Scenario**
 - The simulation consists of a team of *actors*, located at *nodes*, and the goal is to complete *tasks* by constructing *buildings*. 
@@ -9,10 +9,10 @@ Craftbots is a simple simulation with multiple actors that is loosely inspired b
 - Resources are collected from *mines*. They come in five resource types (colours): red, blue, green, orange, black. 
 
 **Actors**
-- Actors are controlled by *agents*. See [creating and agent](creating_an_agent).
+- Actors are controlled by *agents*. See [creating and agent](30_creating_an_agent).
 - Actors can move from node to node, collect resources from mines, pick up and drop resources at nodes, deposit resources into sites, and construct sites. They can also be configured to perform observation and communication actions.
 - Actors can only hold three resources at one time.
-- Actions are described on the [commands](commands) page.
+- Actions are described on the [commands](33_commands) page.
 
 **Tasks**
 - A task looks like "construct a building at node X using these resources".
@@ -37,7 +37,7 @@ Craftbots is a simple simulation with multiple actors that is loosely inspired b
   - *blue* resource takes must longer to produce from a mine.
   - *orange* resource requires multiple actors to collect. Digging at an orange mine with only a single actor does not increase its progress.
   - *green* resources decay over time. If they are not deposited within a set period after they are mined, they disappear.
-- resource properties can be enabled/disabled and configured in the [configuration](configuration).
+- resource properties can be enabled/disabled and configured in the [configuration](20_configuration).
 
 **Sites and Buildings**
 - Sites are started at nodes and linked to a task.
