@@ -9,10 +9,10 @@
 In Craftbots **Agents** control one or more **actors** by sending commands. [Commands](commands) are dispatched through the [agent API](../blob/main/api/agent_api.py) by calling the appropriate function. Information about the current visible state of the world can be read from a [world information dictionary](world_info). For convenience the world info dictionary can be queried through the API.
 
 To adapt an existing planning and execution system to the simuation:
-1. Create an adapter that inherits the (Base Agent)[Base-Agent] class.
-2. connect the adapter to the simulation by appending them to the simulation's `agents` list. See [main.py](../blob/main/main.py) for an example. 
+1. Create an adapter that inherits the [Base Agent](#base-agent) class.
+2. Connect the adapter to the simulation by appending it to the simulation's `agents` list. See [main.py](../blob/main/main.py#L11) for an example. 
 
-!(adapter image)[../blob/gh-pages/craftbots_adapter.png]
+![adapter image](../blob/gh-pages/craftbots_adapter.png)
 
 *Note: the examples below assume an agent intended to run in its own thread. If lockstep is enabled in the configuration then the get_next_commands will be called every tick, and the simulation will be blocked until it returns.*
 
@@ -84,7 +84,7 @@ When the simulation begins the `get_next_commands` method is called at the begin
     def get_next_commands(self):
 ```
 
-The agent makes use of the in-built craftbots [logger](../blob/main/craft_bots/log_manager.py). The logger can be used to collate information and error messages on screen, in file, and in the GUI.
+The agent makes use of the in-built craftbots [logger](../blob/main/craftbots/log_manager.py). The logger can be used to collate information and error messages on screen, in file, and in the GUI.
 ```python
         Logger.info("Agent", "Starting random moves.")
 ```
@@ -94,12 +94,12 @@ The agent loops until the simulation is finished.
         while not self.simulation_complete:
 ```
 
-Each agent is checked to see if it is in an idle state. The `self.api.actors` list stores actor IDs for convenience - but these can also be found in the usual way through the world information (see here)[world_info#actors]. The actor state is queried using the `get_field` function of the agent api.
+Each agent is checked to see if it is in an idle state. The `self.api.actors` list stores actor IDs for convenience - but these can also be found in the usual way through the world information [see here](world_info#actors). The actor state is queried using the `get_field` function of the agent api.
 ```python
             for actor_id in self.api.actors:
                 if self.api.get_field(actor_id, "state") == Actor.IDLE:
 ```
-For more information on actor fields, see (world_info#actors)[world_info#actors].
+For more information on actor fields, see [world_info#actors](world_info#actors).
 
 Those actors that are idle are moved randomly by sending a [command](commands) through the agent api.
 ```python
@@ -111,4 +111,4 @@ Once the simuation is complete, one more line is logged.
         Logger.info("Agent", "Finished.")
 ```
 
-For a more in-depth example, the repository also includes an implementation of a (rule-based agent)[../blob/main/agents/rule_based_agent.py]. This agent does complete tasks, queries most information, and calls all relevant commands.
+For a more in-depth example, the repository also includes an implementation of a [rule-based agent](../blob/main/agents/rule_based_agent.py). This agent does complete tasks, queries most information, and calls all relevant commands.

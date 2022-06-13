@@ -5,6 +5,7 @@ Welcome to the craft-bots wiki!
 - [rules overview](rules_overview)
 - [configuration file](configuration)
 - [creating an agent](creating_an_agent)
+  - [agent api](agent_api)
   - [world info](world_info)
   - [commands](commands)
 - [evaluation](evaluation)
