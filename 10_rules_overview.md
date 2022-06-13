@@ -23,12 +23,11 @@ Craftbots is a simple simulation with multiple actors that is loosely inspired b
 **Mines**
 - Mines are located at nodes.
 - Each mine has a specific resource type.
-- When actors dig at a mine they contribute thier effort to a single progress value. When the effort reaches max progress a single resource is spawned in the node. **Note:** Actors digging in parallel produce *one* resource twice as quickly.
+- When actors dig at a mine they contribute thier effort to a single progress value. When the effort reaches max progress a single resource is spawned in the node. *Note: Actors digging in parallel produce one resource twice as quickly.*
 - When the actors stop digging at the mine, the progress made so far is not lost.
 
 **Resources**
-- Resources can be carried by actors, dropped, picked up, and deposited into sites.
-- Once a resource has been deposited into a site, it cannot be retrieved.
+- Resources can be carried by actors, dropped, picked up, and deposited into sites. Once a resource has been deposited into a site, it cannot be retrieved.
 - Each resource type has a unique property:
   - *black* cannot be carried with any other resource. Picking up a black resource while the inventory is not empty will fail. Similarly attempting to pick up any resource while already carrying one black resource will fail.
   - *red* resource can only be collected within time windows. Interaction with red mines outside of the time window is not possible.
