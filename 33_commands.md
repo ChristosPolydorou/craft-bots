@@ -49,7 +49,7 @@ Indicating that the action is currently executing.
 | ------------ | ----------- | --------- | ----------------- | ----------- |
 | MOVE_TO            | 0  | actor_id, node_id | Determined by actor move speed and edge length. | The actor will travel from its current node to the connected node specified by node_id. |
 | MOVE_RAND          | 1  | actor_id | Determined by actor move speed and edge length. | The actor will travel to a random connected node. |
-| PICK_UP_RESOURCE   | 2  | actor_id, resource_id | The specified resource will be moved from the node to the actor's inventory. |
+| PICK_UP_RESOURCE   | 2  | actor_id, resource_id | 1 tick | The specified resource will be moved from the node to the actor's inventory. |
 | DROP_RESOURCE      | 3  | actor_id, resource_id | 1 tick | The specified resource will be moved from the actor's inventory to the node. | 
 | DROP_ALL_RESOURCES | 4  | actor_id | 1 tick | All resources in the actor's inventory will be moved into the node. |
 | DIG_AT             | 5  | actor_id, mine_id | Determined by the mine's max progress and actor's mining rate. | The actor will begin digging at the mine until either the action is preempted, fails, of the mine's max effort is reached and a resource is produced. |
