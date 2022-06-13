@@ -40,4 +40,4 @@ Craftbots is a simple simulation with multiple actors that is loosely inspired b
 - Sites are started at nodes and linked to a task.
 - Actors deposit resources into a site.
 - When actors construct at a site they contribute their effort into a single progress value. When the effort reaches the "needed effort" then the building is constructed.
-- Progress cannot be increased beyond the "max progress" which is a fraction or the needed effort equal to the fraction of required resources so far deposited. For example, if the task requires two resources and only one has been deposited, then the max progress is 50% of the needed effort.
+- Progress cannot be increased beyond the "max progress" which is a fraction of the needed effort equal to the fraction of required resources so far deposited. For example, if the task requires two resources and only one has been deposited, then the max progress is 50% of the needed effort.
