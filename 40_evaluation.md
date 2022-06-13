@@ -26,5 +26,5 @@ Simply replace the RBAgent class with your own adapter.
 
 ## Evaluation Information
 
-- **Rate override** Changing the simulation rate can change the performance of your agent, if they are running in seperate threads. Running in lockstep means that the simulation will pause while the agent is thinking, but note that this is incomparable with a real-time execution.
+- **Rate override** Changing the simulation rate can change the performance of your agent if they are running in seperate threads. Running in lockstep means that the simulation will pause while the agent is thinking, but note that this is incomparable with a real-time execution.
 - **Output file** will be a CSV file with headers: "seed", "max score", and "score". Max score is the total score of all tasks which were generated during the simulation, and might not be possible to achieve.
