@@ -7,7 +7,7 @@
 
 Commands are sent by the agent via the API to control actors and are executed at the end the tick on which they were sent. There exists a seperate function for each possible command. The functions are listed below; the commands are described in detail on the [commands](33_commands#Detailed-Command-List) page.
 
-```python
+```
     def move_to(self, actor_id, node_id)
     def move_rand(self, actor_id)
     def pick_up_resource(self, actor_id, resource_id)
