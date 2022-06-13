@@ -1,6 +1,6 @@
 ## Contents
 
-- [Sending-Commands](#Sending-Commands)
+- [Sending Commands](#Sending-Commands)
 - [Querying](#Querying)
 
 ## Sending Commands
