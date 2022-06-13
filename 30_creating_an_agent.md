@@ -44,7 +44,7 @@ The simulation interface and status flags are set by the simuation.
 - `self.api` provides a handle to the agent interface through which commands can be sent and world information queried.
 - `self.world_info` contains all of the world information as a dictionary and is updated each tick. See [world_info](32_world_info).
 
-The `self.thinking` agent status flag should be set by both agent and simulation. Each tick the simuation will check the flag, and if false will set the flag to true and call the agent's `get_next_commands` function. If the agent wishes the simulation to call the method multiple times, this can be done by resetting the flag to false.
+Each tick the simuation will read the `self.thinking` flag, and if false will set it to true and call the agent's `get_next_commands` function. If the agent wishes the simulation to call the method multiple times, this can be done by resetting the flag to false.
 
 ## Example
 
