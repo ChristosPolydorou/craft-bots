@@ -10,7 +10,7 @@ Craftbots is a simple simulation with multiple actors that is loosely inspired b
 
 **Actors**
 
-![craftbots screenshot](https://raw.githubusercontent.com/strathclyde-artificial-intelligence/craft-bots/gh-pages/images/actor.png)
+![actor screenshot](https://raw.githubusercontent.com/strathclyde-artificial-intelligence/craft-bots/gh-pages/images/actor.png)
 
 - Actors are controlled by *agents*. See [creating an agent](30_creating_an_agent).
 - Actors can move from node to node, collect resources from mines, pick up and drop resources at nodes, deposit resources into sites, and construct sites. They can perform observation and communication actions if those are enabled in the configuration.
@@ -24,6 +24,9 @@ Craftbots is a simple simulation with multiple actors that is loosely inspired b
 - There is a small chance that a new task is generated each tick.
 
 **Mines**
+
+![mine screenshot](https://raw.githubusercontent.com/strathclyde-artificial-intelligence/craft-bots/gh-pages/images/mine.png)
+
 - Mines are located at nodes.
 - Each mine has a specific resource type.
 - When actors dig at a mine they contribute thier effort to a single progress value. When the effort reaches max progress a single resource is spawned in the node. *Note: Actors digging in parallel produce only one resource but more quickly.*
@@ -40,6 +43,9 @@ Craftbots is a simple simulation with multiple actors that is loosely inspired b
 - resource properties can be enabled/disabled and configured in the [configuration](20_configuration).
 
 **Sites and Buildings**
+
+![site screenshot](https://raw.githubusercontent.com/strathclyde-artificial-intelligence/craft-bots/gh-pages/images/site.png)
+
 - Sites are started at nodes and linked to a task.
 - Actors deposit resources into a site.
 - When actors construct at a site they contribute their effort into a single progress value. When the effort reaches the "needed effort" then the building is constructed.
