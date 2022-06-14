@@ -9,7 +9,9 @@ Craftbots is a simple simulation with multiple actors that is loosely inspired b
 - Resources are collected from *mines*. They come in five resource types (colours): red, blue, green, orange, black. 
 
 **Actors**
+
 ![craftbots screenshot](https://raw.githubusercontent.com/strathclyde-artificial-intelligence/craft-bots/gh-pages/images/actor.png)
+
 - Actors are controlled by *agents*. See [creating an agent](30_creating_an_agent).
 - Actors can move from node to node, collect resources from mines, pick up and drop resources at nodes, deposit resources into sites, and construct sites. They can perform observation and communication actions if those are enabled in the configuration.
 - Actors can only hold three resources at one time.
