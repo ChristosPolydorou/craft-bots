@@ -8,6 +8,12 @@ Craftbots is a simple simulation with multiple actors that is loosely inspired b
 - Actors construct buildings by starting *sites*, depositing *resources* into those sites, and then spending time constructing.
 - Resources are collected from *mines*. They come in five resource types (colours): red, blue, green, orange, black. 
 
+**Tasks**
+- A task looks like "construct a building at node X using these resources: 2 red, 1 blue, ..."
+- Each task is associated with a score and a deadline. Constructing the required building before the deadline will complete the task and score the points.
+- When all tasks are completed, new tasks are generated.
+- There is a small chance that a new task is generated each tick.
+
 **Actors**
 
 ![actor screenshot](https://raw.githubusercontent.com/strathclyde-artificial-intelligence/craft-bots/gh-pages/images/actor.png)
@@ -16,12 +22,6 @@ Craftbots is a simple simulation with multiple actors that is loosely inspired b
 - Actors can move from node to node, collect resources from mines, pick up and drop resources at nodes, deposit resources into sites, and construct sites. They can perform observation and communication actions if those are enabled in the configuration.
 - Actors can only hold three resources at one time.
 - Actions are described on the [commands](33_commands#detailed-command-list) page.
-
-**Tasks**
-- A task looks like "construct a building at node X using these resources: 2 red, 1 blue, ..."
-- Each task is associated with a score and a deadline. Constructing the required building before the deadline will complete the task and score the points.
-- When all tasks are completed, new tasks are generated.
-- There is a small chance that a new task is generated each tick.
 
 **Mines**
 
